@@ -1,0 +1,21 @@
+version: "3"
+services:
+
+  web:
+      image: indirapimpalkhare/django_calc_rest
+      # volumes:
+      #   - api-data:/docker_api
+      ports:
+        - "8000:8000"
+      networks:
+        - backend
+      deploy:
+        replicas: 10
+        update_config:
+          parallelism: 2
+        restart_policy:
+          condition: on-failure
+
+networks:
+  backend:
+
